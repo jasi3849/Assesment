@@ -13,39 +13,22 @@ import axios from 'axios';
 import { API_BASE } from '@env';
 // const API_BASE = Constants.expoConfig.extra.API_BASE;
 const ITEM_HEIGHT = 150;
-
+import { useCartStore } from '../store/cartStore';
 export default function ProductList({ navigation }) {
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
 
-//   const fetchProducts = async () => {
-//     if (loading || !hasMore) return;
-//     setLoading(true);
-
-//     try {
-//       const res = await axios.get(`${API_BASE}/api/products?page=${page}`);
-//     const newProducts = res.data.data;
 
 
-//       setProducts(prev => [...prev, ...newProducts]);
-//       setHasMore(newProducts.length > 0);
-//       setPage(prev => prev + 1);
-//     } catch (err) {
-//       console.error(err);
-//       Alert.alert('Error', 'Failed to load products');
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
 
 const fetchProducts = async () => {
   if (loading || !hasMore) return;
   setLoading(true);
 
   try {
-    const res = await axios.get(`${API_BASE}/api/products?page=${page}`);
+    const res = await axios.get(`${API_BASE}/products?page=${page}`);
     const newProducts = res.data.data;
 
     setProducts(prev => {
@@ -69,6 +52,7 @@ const fetchProducts = async () => {
   }, []);
 
   const handleAddToCart = (product) => {
+    useCartStore.getState().addToCart(product);
     Alert.alert('Cart', `${product.name} added to cart`);
   };
 
