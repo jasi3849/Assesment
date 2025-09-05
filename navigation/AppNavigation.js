@@ -1,7 +1,8 @@
+
 // import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+// import { View, Text } from 'react-native';
 // import ProductList from '../screens/ProductList';
 // import CartScreen from '../screens/CartScreen';
-// import { View, Text } from 'react-native';
 // import { Ionicons } from '@expo/vector-icons';
 // import { useCartStore } from '../store/cartStore';
 
@@ -11,11 +12,19 @@
 //   const cartItems = useCartStore(state => state.items);
 
 //   return (
-//     <Tab.Navigator screenOptions={{ headerShown: false }}>
+//     <Tab.Navigator
+//       screenOptions={{
+//         headerStyle: { backgroundColor: '#007bff' },
+//         headerTintColor: '#fff',
+//         headerTitleAlign: 'center',
+//         tabBarActiveTintColor: '#007bff',
+//       }}
+//     >
 //       <Tab.Screen
 //         name="Products"
 //         component={ProductList}
 //         options={{
+//           title: 'Products', // Top navbar title
 //           tabBarIcon: ({ color, size }) => <Ionicons name="home" color={color} size={size} />,
 //         }}
 //       />
@@ -23,6 +32,7 @@
 //         name="Cart"
 //         component={CartScreen}
 //         options={{
+//           title: 'Cart', // Top navbar title
 //           tabBarIcon: ({ color, size }) => (
 //             <View>
 //               <Ionicons name="cart" color={color} size={size} />
@@ -51,8 +61,9 @@
 //       />
 //       <Tab.Screen
 //         name="User"
-//         component={View} // Replace with your user profile screen
+//         component={View} // Replace with your User Profile screen
 //         options={{
+//           title: 'User', // Top navbar title
 //           tabBarIcon: ({ color, size }) => <Ionicons name="person" color={color} size={size} />,
 //         }}
 //       />
@@ -60,11 +71,12 @@
 //   );
 // }
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { View, Text } from 'react-native';
 import ProductList from '../screens/ProductList';
 import CartScreen from '../screens/CartScreen';
+import UsersScreen from '../screens/UsersScreen';
 import { Ionicons } from '@expo/vector-icons';
 import { useCartStore } from '../store/cartStore';
+import { View, Text } from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
@@ -84,7 +96,7 @@ export default function AppNavigation() {
         name="Products"
         component={ProductList}
         options={{
-          title: 'Products', // Top navbar title
+          title: 'Products',
           tabBarIcon: ({ color, size }) => <Ionicons name="home" color={color} size={size} />,
         }}
       />
@@ -92,7 +104,7 @@ export default function AppNavigation() {
         name="Cart"
         component={CartScreen}
         options={{
-          title: 'Cart', // Top navbar title
+          title: 'Cart',
           tabBarIcon: ({ color, size }) => (
             <View>
               <Ionicons name="cart" color={color} size={size} />
@@ -120,11 +132,11 @@ export default function AppNavigation() {
         }}
       />
       <Tab.Screen
-        name="User"
-        component={View} // Replace with your User Profile screen
+        name="Users"
+        component={UsersScreen}
         options={{
-          title: 'User', // Top navbar title
-          tabBarIcon: ({ color, size }) => <Ionicons name="person" color={color} size={size} />,
+          title: 'Users',
+          tabBarIcon: ({ color, size }) => <Ionicons name="people" color={color} size={size} />,
         }}
       />
     </Tab.Navigator>
